@@ -1,5 +1,41 @@
-# A linha abaixo determina que o diretório node_modules não será enviado ao repositório remoto
-node_modules
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 package-lock.json
 
-.github
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+debug.log
+error.log
+
+# Build and output
+dist/
+build/
+output/
+uploads/
+temp/
+tmp/
+
+# IDE and OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# GitHub workflow folder (optional)
+.github/
+
+# Backup or miscellaneous
+*.bak
+*.tmp
