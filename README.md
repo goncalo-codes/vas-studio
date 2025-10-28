@@ -66,15 +66,11 @@ Its goal is to simplify the process of adding ambient soundscapes to media witho
 
 🧭 Future Improvements
 
-    User dashboard for managing and organizing sound collections
-
-    Advanced audio mixing interface
-
-    Cloud storage for user-generated environments
-
-    Collaborative sound creation features
-
-    Expanded video editing timeline
+- User dashboard for managing and organizing sound collections
+- Advanced audio mixing interface
+- Cloud storage for user-generated environments
+- Collaborative sound creation features
+- Expanded video editing timeline
 
 💡 About the Project
 
