@@ -1,104 +1,83 @@
-<img src="https://user-images.githubusercontent.com/46379117/192358781-9ca879e4-e55e-4d0d-b876-f9a4a2ed9ae8.png" width="600px">
+# 🎧 VAS — Virtual Audio Scape
 
-_Web Data Visualization = Visualização de Dados na Web_
+**VAS (Virtual Audio Scape)** is a web platform that allows users to explore, purchase, and combine real-world sounds to **create immersive virtual sound environments**.  
+It also provides a **simple video editor** that enables users to add soundscapes to their videos — perfect for **small production studios, digital influencers, and content creators** who want to generate professional sound environments **at low cost and without editing experience**.
 
-_Implementação de Referência para o seu Projeto de Primeiro Semestre_
+---
 
-<hr>
+## 🌍 Main Features
 
-# Como usar
+- 🛒 **Sound Store** — Browse, purchase, and download individual sounds or themed packages (e.g., “Coffee Shop”, “Nature”, “City Life”).  
+- 🎼 **Virtual Sound Environment** — Mix multiple sounds to create immersive ambiences with playback controls.  
+- ⚙️ **Audio Processing** — Change playback speed, apply reverb, and combine different audio layers.  
+- 🎬 **Video Integration** — Upload videos and easily add sounds to specific moments using **FFmpeg**.  
+- 👤 **User System** — Account creation, login, purchase history, and access to owned sounds.  
 
-1. Clone este repositório em sua máquina.
+---
 
+## 🧩 Tech Stack
 
-1. Crie, no Banco de Dados, as tabelas necessárias para o funcionamento deste projeto.
-- Siga as instruções no arquivo **/src/database/script-tabelas.sql**
+### Backend
+- **Node.js**
+- **Express**
+- **MySQL**
+- **FFmpeg**
 
+### Frontend
+- **HTML5**
+- **CSS3**
+- **JavaScript**
+- **Bootstrap**
 
-3. Acesse o arquivo **app.js** e parametrize o ambiente.
-- Se você estiver utilizando o Ambiente de Produção (remoto), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **var ambiente_processo = 'producao';**
-- Se você estiver utilizando o Ambiente de Desenvolvimento (local), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **var ambiente_processo = 'desenvolvimento';**
+---
 
-4. Adicione as credenciais de Banco de Dados no arquivo **.env** ou em **.end.dev**, seguindo as instruções neste.
+## 🚀 Getting Started
 
-5. Acesse este repositório no seu terminal (GitBash ou VSCode) e execute os comandos abaixo:
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/vas.git
 
-```
-npm i
-``` 
-_O comando acima irá instalar as bibliotecas necessárias para o funcionamento do projeto. As bibliotecas a serem instaladas estão listadas no arquivo **package.json** então é muito importante que este não seja alterado. Será criada uma nova pasta/diretório chamado **node_modules** quando o comando for finalizado, que é onde as bibliotecas estão localizadas. Não altere a pasta/diretório._
+2. Install dependencies
 
-```
+npm install
+
+3. Configure the database
+
+Create a MySQL database and add your credentials in a .env file:
+
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=your_password
+DB_NAME=vas
+
+4. Start the server
+
 npm start
-``` 
 
-_O comando acima irá iniciar seu projeto e efetuar os comandos de acordo com a sua parametrização feita nos passos anteriores._
+5. Access the app
 
-6. Para "ver" seu projeto funcionando, acesse em seu navegador o caminho **informado no terminal**.
+Open your browser and go to http://localhost:3000
+🧠 Project Goal
 
-7. Caso queira parar a execução, tecle **CTRL+C** no terminal em que o projeto está rodando.
+VAS was designed to make sound design accessible to everyone — from independent filmmakers to digital creators.
+Its goal is to simplify the process of adding ambient soundscapes to media without requiring any editing experience or expensive tools.
+🧭 Future Improvements
 
-## Adicionar novo recurso ao projeto
+    User dashboard for managing and organizing sound collections
 
-**"Recurso? O que é?"** Enquanto no Banco de Dados chamamos as tabelas de "entidades", quando tratamos de desenvolvimento WEB usamos a palavra "recurso" para se referir a algo que podemos criar, ler, atualizar ou deletar [1]. Estas ações são conhecidas como CRUD: Create, Read, Update e Delete. Para acessar cada ação, usamos os métodos HTTP: POST, GET, PUT e DELETE [2]. (Há outros verbos, porém com estes já conseguimos efetuar CRUDs). 
+    Advanced audio mixing interface
 
-**Tabela para ajudar a fazer a associação**
+    Cloud storage for user-generated environments
 
-<table>
-  <tr>
-    <th>C.R.U.D</th>
-    <th>Ação</th>
-    <th>Tradução</th>
-    <th>Verbo HTTP *</th>
-    <th>Comando BD</th>
-  </tr>
-  <tr>
-    <td>C</td>
-    <td>Create</td>
-    <td>Criar</td>
-    <td>POST</td>
-    <td>INSERT</td>
-  </tr>
-  <tr>
-    <td>R</td>
-    <td>Read</td>
-    <td>Ler</td>
-    <td>GET</td>
-    <td>SELECT</td>
-  </tr>
-  <tr>
-    <td>U</td>
-    <td>Update</td>
-    <td>Atualizar</td>
-    <td>PUT</td>
-    <td>UPDATE</td>
-  </tr>
-  <tr>
-    <td>D</td>
-    <td>Delete</td>
-    <td>Deletar</td>
-    <td>DELETE</td>
-    <td>DELETE</td>
-  </tr>
-</table>
+    Collaborative sound creation features
 
-_* Você verá o verbo HTTP sendo apontado nos arquivos em /routes_
+    Expanded video editing timeline
 
-**"E no meu projeto, o que seria um recurso?"** Em web-data-viz manipulamos os recursos **usuário**, **aviso** e **medida**. Podemos conferir isso vendo para quais entidades foram criados os caminhos de inserção e captura de dados, que envolve os diretórios **routes**, **controllers** e **models**.
+💡 About the Project
 
-Abaixo, uma figura que ajuda a compreender o caminho percorrido para, por exemplo, efetuar o cadastro de um usuário:
+VAS is currently in its first functional version — stable and fully working, with continuous improvements planned.
+It aims to grow into a versatile platform for audio creation, education, and integration with visual media.
+🛠️ Developed by
 
-
-![image](https://github.com/BandTec/web-data-viz/assets/46379117/e8d63551-6153-4632-93b9-f59a1d2afd3e)
-
-
-**Entendi o que é um recurso e gostaria de adicionar um novo ao meu projeto! Como faz?**  
-- Primeiro, crie a tabela no Banco de Dados referente a este recurso. Exemplos de recursos comuns de serem adicionados ao projeto no primeiro semestre: Silo, Aquário, Sala, Andar, Endereço, Mercado, Prateleira, Unidade, Carro, Caminhão...  
-- Assim que criada a tabela, faça todo o caminho de **front-end → routes → controllers → models** replicando o que já existe!  
-- Exemplo, se você quiser a funcionalidade de adicionar um novo Aquário, deve criar arquivos referentes ao aquario nos diretórios e replicar também as funções.  
-- Dica: A implementação de AVISO já contém o CRUD completo! :wink:
- 
-### Fontes bibliográficas
-
-[1] https://datatracker.ietf.org/doc/html/rfc2396  
-[2] https://datatracker.ietf.org/doc/html/rfc7231
+Lucas
+A passionate developer exploring the intersection of sound, interactivity, and technology.
