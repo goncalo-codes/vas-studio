@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Editor de Vídeo Avançado | RLG</title>
+    <link rel="stylesheet" href="..\ambientesVirtuaisCSS\ambientesVirtuais.css">
+    <link rel="stylesheet" href="..\ambientesVirtuaisCSS\editorCSS.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        .Logo {
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .Logo:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .audios-preview {
+            margin-top: 10px;
+            border: 1px dashed #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 60px;
+            /* Altura mínima quando vazio */
+            transition: min-height 0.3s ease;
+        }
+
+        .selected-audio {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .selected-audio:last-child {
+            margin-bottom: 0;
+        }
+
+        .selected-audio:hover {
+            background-color: #e9ecef;
+        }
+
+        .audio-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-grow: 1;
+        }
+
+        .audio-details {
+            flex-grow: 1;
+        }
+
+        .audio-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .audio-actions button {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #6c757d;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .audio-actions button:hover {
+            opacity: 0.8;
+        }
+
+        .audio-actions .remove-selected {
+            background-color: #dc3545;
+        }
+
+        .audio-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 80px;
+        }
+
+        .control-group label {
+            font-size: 12px;
+            display: block;
+            margin-bottom: 4px;
+            color: #555;
+        }
+
+        .control-group input {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .editor-card {
+            min-height: 400px;
+            /* Altura mínima do card */
+            transition: min-height 0.3s ease;
+        }
+
+        .btn-add-audio {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="main-header">
+        <a href="./indexLogado.html">
+            <img src="..\ambienteAssets\logo.png" width="70" height="60" alt="Logo" class="Logo">
+        </a>
+
+        <ul class="menu">
+            <li><a href="indexLogado.html">Início</a></li>
+            <li><a href="ambientesVirtuaisLogado.html">Ambiente Virtual</a></li>
+            <li><a href="editorVideoLogado.html">Editor de Vídeo</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Sons</a>
+                <div class="dropdown-content">
+                    <a href="meus-sonsLogado.html">Meus Sons</a>
+                    <a href="sonsLogado.html">Adquirir Sons</a>
+                </div>
+            </li>
+            <li><a href="parceriasLogado.html">Parcerias</a></li>
+            <li><a href="sobreLogado.html">Sobre</a></li>
+        </ul>
+
+        <div class="actions-usuario">
+            <button id="userBtn" class="dropdown-btn">
+                <span id="b_usuario">Usuário</span>
+            </button>
+            <div id="dropdownMenu" class="dropdown-menu">
+                <a href="..\.\Perfil\perfil.html">Perfil</a>
+                <a href="#" onclick="logout()">Deslogar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="editor-container">
+        <div class="editor-header">
+            <h1><i class="fas fa-video"></i> Editor de Vídeo Avançado</h1>
+            <p class="subtitle">Combine seus vídeos com trilhas sonoras profissionais</p>
+        </div>
+
+        <div class="editor-card">
+            <form id="uploadForm" class="editor-form">
+                <div class="form-section">
+                    <div class="form-group file-upload">
+                        <label for="videoInput" class="upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span class="upload-text">Vídeo Principal (MP4)</span>
+                            <span class="file-name" id="videoFileName">Nenhum arquivo selecionado</span>
+                        </label>
+                        <input type="file" id="videoInput" accept="video/mp4" required class="hidden-upload">
+                    </div>
+
+                    <div class="form-group audio-selection">
+                        <label>Trilhas Sonoras (máx. 6)</label>
+                        <div id="selectedAudiosContainer" class="audios-preview">
+                            <p id="noAudioSelected"><i class="fas fa-music"></i> Nenhum áudio selecionado</p>
+                        </div>
+                        <input type="hidden" id="selectedAudiosPaths">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="processButton" class="btn-process">
+                        <i class="fas fa-cogs"></i> Processar Novo Vídeo
+                    </button>
+                    <div id="status" class="status-message"></div>
+                    <a id="downloadLink" class="download-button">
+                        <i class="fas fa-download"></i> Download do Vídeo Processado
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <button id="btnAddAudio" class="btn-add-audio">
+            <i class="fas fa-plus-circle"></i> Selecionar Trilha Sonora
+        </button>
+    </main>
+
+    <!-- Popup de seleção de áudio -->
+    <div id="popup2" class="audio-popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2><i class="fas fa-headphones"></i> Sons Comprados</h2>
+                <span id="close-popup2" class="close-popup">&times;</span>
+            </div>
+            <div id="son-list" class="audio-grid"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p style="color: white">&copy; 2024 RLG | Todos os direitos reservados</p>
+    </footer>
+    <script>
+        // Gerenciamento de usuário
+        const userBtn = document.getElementById('userBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const b_usuario = document.getElementById('b_usuario');
+
+        userBtn.addEventListener('click', function (event) {
+            event.stopPropagation();
+            dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!userBtn.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+
+        function logout() {
+            sessionStorage.removeItem('NOME_USUARIO');
+            window.location.href = '/index.html';
+        }
+
+        if (sessionStorage.getItem('NOME_USUARIO')) {
+            b_usuario.innerHTML = sessionStorage.getItem('NOME_USUARIO');
+        } else {
+            b_usuario.innerHTML = 'Usuário';
+        }
+    </script>
+
+    <script src="..\ambientesVirtuaisJS\editorScript.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loja de Sons</title>
+    <link rel="stylesheet" href="..\ambientesVirtuaisCSS\ambientesVirtuais.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <a href="./indexLogado.html">
+            <img src="..\ambienteAssets\logo.png" width="70" height="60" alt="Logo" class="Logo">
+        </a>
+
+        <style>
+            /* Estilo para a imagem logo */
+            .Logo {
+                cursor: pointer;
+                /* Aparece como um ponteiro, indicando que é clicável */
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                /* Suaviza a transição */
+            }
+
+            /* Efeito de hover para indicar interatividade */
+            .Logo:hover {
+                transform: scale(1.1);
+                /* Aumenta levemente o tamanho da imagem */
+                opacity: 0.8;
+                /* Diminui um pouco a opacidade */
+            }
+        </style>
+
+        <ul class="menu">
+            <li><a href="indexLogado.html">Início</a></li>
+            <li><a href="ambientesVirtuaisLogado.html">Ambiente Virtual</a></li>
+            <li><a href="editorVideoLogado.html">Editor de Vídeo</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Sons</a>
+                <div class="dropdown-content">
+                    <a href="meus-sonsLogado.html">Meus Sons</a>
+                    <a href="sonsLogado.html">Adquirir Sons</a>
+                </div>
+            </li>
+            <li><a href="parceriasLogado.html">Parcerias</a></li>
+            <li><a href="sobreLogado.html">Sobre</a></li>
+        </ul>
+
+        <div class="actions-usuario">
+            <button id="userBtn" class="dropdown-btn">
+                <span id="b_usuario">Usuário</span> <!-- Aqui o nome do usuário será inserido -->
+            </button>
+            <div id="dropdownMenu" class="dropdown-menu">
+                <a href="..\.\Perfil\perfil.html">Perfil</a>
+                <a href="#" onclick="logout()">Deslogar</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="center-content">
+            <h1 style="margin-top: 50px">Ambiente Virtual</h1>
+            <p>Escolha um cenário ou personalize a sua experiência sonora!</p>
+
+            <button id="play-all-button">Play Todos</button>
+
+            <!-- Container para o dropdownn e botão -->
+            <div class="dropdownn-container">
+                <!-- Dropdown "Cenários" -->
+                <button class="dropdownn-button">Cenários</button>
+                <div class="dropdownn-menu">
+
+                </div>
+
+            </div>
+            <!-- Botão Personalizado -->
+            <button class="customize-button">Personalizado</button>
+
+
+            <!-- Conteúdo Dinâmico -->
+            <div id="dynamic-content" class="dynamic-content">
+                <p>Selecione um cenário para visualizar os sons.</p>
+            </div>
+
+
+            <!-- Sons -->
+            <div class="sons-container">
+                <!-- Sons serão renderizados dinamicamente via JavaScript -->
+            </div>
+    </main>
+
+    <!-- Popup (inicialmente oculto) -->
+    <div id="popup2" class="popup2">
+        <div class="popup-content2">
+            <span id="close-popup2" class="close-popup2">&times;</span>
+            <h2>Sons Comprados</h2>
+            <div id="son-list">
+                <!-- Os sons comprados serão inseridos aqui com botões -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p style="color: white">&copy; 2024 RLG | Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Referências aos elementos
+        const userBtn = document.getElementById('userBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const b_usuario = document.getElementById('b_usuario');
+
+        // Função para alternar o dropdown
+        userBtn.addEventListener('click', function (event) {
+            // Previne que o clique no botão faça rolar a página
+            event.stopPropagation();
+            // Alterna a visibilidade do dropdown
+            dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+        });
+
+        // Fecha o dropdown se clicar fora do botão
+        document.addEventListener('click', function (event) {
+            if (!userBtn.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+
+        // Função de logout (pode incluir redirecionamento ou limpar sessão)
+        function logout() {
+            // Limpa o sessionStorage e redireciona para a página inicial
+            sessionStorage.removeItem('NOME_USUARIO');
+            window.location.href = '/index.html'; // Redireciona para a página inicial
+        }
+
+        // Recupera o nome do usuário do sessionStorage e exibe
+        if (sessionStorage.getItem('NOME_USUARIO')) {
+            b_usuario.innerHTML = sessionStorage.getItem('NOME_USUARIO');
+        } else {
+            b_usuario.innerHTML = 'Usuário'; // Caso o nome do usuário não esteja na sessão
+        }
+    </script>
+
+    <script src="..\ambientesVirtuaisJS\ambientesVirtuaisLogado.js"></script>
+</body>
+
+</html>

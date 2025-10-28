@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loja de Sons</title>
+    <link rel="stylesheet" href="..\ambientesVirtuaisCSS\styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <a href="./indexLogado.html">
+            <img src="..\ambienteAssets\logo.png" width="70" height="60" alt="Logo" class="Logo">
+        </a>
+
+        <style>
+            /* Estilo para a imagem logo */
+            .Logo {
+                cursor: pointer;
+                /* Aparece como um ponteiro, indicando que é clicável */
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                /* Suaviza a transição */
+            }
+
+            /* Efeito de hover para indicar interatividade */
+            .Logo:hover {
+                transform: scale(1.1);
+                /* Aumenta levemente o tamanho da imagem */
+                opacity: 0.8;
+                /* Diminui um pouco a opacidade */
+            }
+        </style>
+
+        <ul class="menu">
+            <li><a href="indexLogado.html">Início</a></li>
+            <li><a href="ambientesVirtuaisLogado.html">Ambiente Virtual</a></li>
+            <li><a href="editorVideoLogado.html">Editor de Vídeo</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Sons</a>
+                <div class="dropdown-content">
+                    <a href="meus-sonsLogado.html">Meus Sons</a>
+                    <a href="sonsLogado.html">Adquirir Sons</a>
+                </div>
+            </li>
+            <li><a href="parceriasLogado.html">Parcerias</a></li>
+            <li><a href="sobreLogado.html">Sobre</a></li>
+        </ul>
+
+        <style>
+            /* Estilo para a imagem logo */
+            .Logo {
+                cursor: pointer;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+
+            .Logo:hover {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+
+            /* Estilos para a página Sobre */
+            .about-list {
+                margin: 20px 0;
+                padding-left: 20px;
+            }
+
+            .about-list li {
+                margin-bottom: 15px;
+                line-height: 1.6;
+            }
+
+            .funcionalidade {
+                background-color: #fff;
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 15px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .funcionalidade h3 {
+                color: #c7a47d;
+                margin-bottom: 10px;
+            }
+
+            .tech-section {
+                padding: 60px 10%;
+                text-align: center;
+                background-color: #fff;
+            }
+
+            .tech-section h2 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            .tech-section p {
+                font-size: 1.1rem;
+                color: #555;
+                margin-bottom: 40px;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .tech-grid {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 30px;
+                margin-top: 30px;
+            }
+
+            .tech-item {
+                background: #f9f9f9;
+                padding: 20px;
+                border-radius: 10px;
+                width: 150px;
+                transition: transform 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .tech-item:hover {
+                transform: translateY(-5px);
+            }
+
+            .tech-item img {
+                width: 80px;
+                height: 80px;
+                object-fit: contain;
+                margin-bottom: 15px;
+            }
+
+            .tech-item p {
+                font-weight: bold;
+                color: #555;
+            }
+
+            /* Estilos específicos para as imagens da missão e funcionamento */
+            .feature-image img {
+                max-width: 100%;
+                height: auto;
+                width: 350px;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Estilo para ajustar a posição da imagem de fundo do hero */
+            .hero {
+                background-position: center 30%;
+                background-size: cover;
+                position: relative;
+            }
+
+            /* Estilo para o dropdown */
+            .dropdown-container {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-btn {
+                background-color: transparent;
+                color: white;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                background-color: #333;
+                min-width: 150px;
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                right: 0;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                padding: 10px 15px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #575757;
+            }
+
+            /* Efeito visual para tornar o nome do usuário claramente clicável */
+            #b_usuario {
+                cursor: pointer;
+                /* Mudança do cursor para indicar que é clicável */
+                transition: color 0.3s, border-color 0.3s;
+                /* Suaviza a transição da cor e do contorno */
+                border: 2px solid transparent;
+                /* Contorno inicial transparente */
+                padding: 2px 8px;
+                /* Espaçamento interno para o contorno */
+                border-radius: 5px;
+                /* Arredondamento dos cantos do contorno */
+                color: #fcfbfb;
+                /* Muda a cor quando o mouse passa por cima */
+                border-color: #ffffff;
+                /* Muda a cor do contorno ao passar o mouse */
+            }
+
+            #b_usuario:hover {
+                color: #eed798;
+                /* Muda a cor quando o mouse passa por cima */
+                border-color: #ebd59b;
+                /* Muda a cor do contorno ao passar o mouse */
+            }
+        </style>
+
+
+        <div class="actions-usuario">
+            <button id="userBtn" class="dropdown-btn">
+                <span id="b_usuario">Usuário</span> <!-- Aqui o nome do usuário será inserido -->
+            </button>
+            <div id="dropdownMenu" class="dropdown-menu">
+                <a href="..\.\Perfil\perfil.html">Perfil</a>
+                <a href="#" onclick="logout()">Deslogar</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section para Sobre - Imagem ajustada para baixo -->
+    <section class="hero" style="background-image: url('../ambienteAssets/bg_sobre.png'); height: 60vh;">
+        <div class="hero-content">
+            <h1>Sobre Nós</h1>
+            <p style="color:rgb(238, 238, 238)">Conheça a história e a missão por trás da nossa plataforma de ambientes
+                sonoros</p>
+        </div>
+    </section>
+
+    <!-- Seção Nossa Missão -->
+    <section class="feature-section">
+        <div class="feature-content">
+            <h2>Nossa Missão</h2>
+            <p>Criamos esta plataforma com um duplo propósito:</p>
+            <ul class="about-list">
+                <li>Fornecer <strong>ambientes sonoros imersivos</strong> para ajudar pessoas a estudar, relaxar ou
+                    simplesmente criar atmosferas personalizadas para seu dia-a-dia.</li>
+                <li>Oferecer uma <strong>ferramenta de edição de vídeo acessível</strong> para pequenas produtoras e
+                    criadores de conteúdo, combinando simplicidade de uso com qualidade profissional.</li>
+            </ul>
+            <p>Acreditamos que a criação de ambientes sonoros e a edição básica de vídeo não precisam ser complicadas ou
+                caras.</p>
+        </div>
+        <div class="feature-image">
+            <img src="../ambienteAssets/missao.png" alt="Nossa Missão" style="max-height: 350px;">
+        </div>
+    </section>
+
+    <!-- Seção Como Funciona -->
+    <section class="feature-section" style="flex-direction: row-reverse; background-color: #f0f0f0;">
+        <div class="feature-content">
+            <h2>Como Funciona</h2>
+            <p>Nossa plataforma oferece três funcionalidades principais:</p>
+            <div class="funcionalidade">
+                <h3>Sandbox de Ambientes</h3>
+                <p>Experimente combinar diferentes sons para criar ambientes únicos. Controle volume, velocidade e
+                    duração de cada elemento.</p>
+            </div>
+            <div class="funcionalidade">
+                <h3>Editor de Vídeo Integrado</h3>
+                <p>Adicione seus sons a vídeos com precisão, controlando quando cada áudio começa e quanto tempo dura.
+                </p>
+            </div>
+            <div class="funcionalidade">
+                <h3>Loja de Sons</h3>
+                <p>Compre sons individuais ou pacotes completos de ambientes prontos para uso imediato.</p>
+            </div>
+        </div>
+        <div class="feature-image">
+            <img src="../ambienteAssets/funcionamento.png" alt="Como Funciona" style="max-height: 350px;">
+        </div>
+    </section>
+
+    <!-- Seção Tecnologias -->
+    <section class="tech-section">
+        <h2>Tecnologias Utilizadas</h2>
+        <p>Para criar esta experiência completa, utilizamos as seguintes tecnologias:</p>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <img src="../ambienteAssets/html.png" alt="HTML5">
+                <p>HTML5</p>
+            </div>
+            <div class="tech-item">
+                <img src="..\ambienteAssets/css.png" alt="CSS3">
+                <p>CSS3</p>
+            </div>
+            <div class="tech-item">
+                <img src="..\ambienteAssets/js.png" alt="JavaScript">
+                <p>JavaScript</p>
+            </div>
+            <div class="tech-item">
+                <img src="..\ambienteAssets/nodejs.png" alt="Node.js">
+                <p>Node.js</p>
+            </div>
+            <div class="tech-item">
+                <img src="..\ambienteAssets/ffmpeg.png" alt="FFmpeg">
+                <p>FFmpeg</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Newsletter -->
+    <section id="newsletter" class="newsletter">
+        <div class="newsletter-container">
+            <h2>Junte-se à Nossa Comunidade</h2>
+            <p>Receba atualizações, novos sons e dicas para criar os melhores ambientes sonoros.</p>
+            <form action="#" method="post" class="newsletter-form">
+                <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                <button type="submit">Inscrever-se</button>
+            </form>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <p style="color: white">&copy; 2024 RLG | Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Referências aos elementos
+        const userBtn = document.getElementById('userBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const b_usuario = document.getElementById('b_usuario');
+
+        // Função para alternar o dropdown
+        userBtn.addEventListener('click', function (event) {
+            // Previne que o clique no botão faça rolar a página
+            event.stopPropagation();
+            // Alterna a visibilidade do dropdown
+            dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+        });
+
+        // Fecha o dropdown se clicar fora do botão
+        document.addEventListener('click', function (event) {
+            if (!userBtn.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+
+        // Função de logout (pode incluir redirecionamento ou limpar sessão)
+        function logout() {
+            // Limpa o sessionStorage e redireciona para a página inicial
+            sessionStorage.removeItem('NOME_USUARIO');
+            window.location.href = '/index.html'; // Redireciona para a página inicial
+        }
+
+        // Recupera o nome do usuário do sessionStorage e exibe
+        if (sessionStorage.getItem('NOME_USUARIO')) {
+            b_usuario.innerHTML = sessionStorage.getItem('NOME_USUARIO');
+        } else {
+            b_usuario.innerHTML = 'Usuário'; // Caso o nome do usuário não esteja na sessão
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loja de Sons</title>
+    <link rel="stylesheet" href=".\ambientesVirtuaisCSS\styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="main-header">
+        <a href="/index.html">
+            <img src="..\ambienteAssets\logo.png" width="70" height="60" alt="Logo" class="Logo">
+        </a>
+
+        <style>
+            /* Estilo para a imagem logo */
+            .Logo {
+                cursor: pointer;
+                /* Aparece como um ponteiro, indicando que é clicável */
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                /* Suaviza a transição */
+            }
+
+            /* Efeito de hover para indicar interatividade */
+            .Logo:hover {
+                transform: scale(1.1);
+                /* Aumenta levemente o tamanho da imagem */
+                opacity: 0.8;
+                /* Diminui um pouco a opacidade */
+            }
+        </style>
+
+        <ul class="menu">
+            <li><a href="index.html">Início</a></li>
+            <li><a href=".\ambientesVirtuais\ambientesVirtuais.html">Ambiente Virtual</a></li>
+            <li><a href=".\ambientesVirtuais\editorVideo.html">Editor de Video</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Sons</a>
+                <div class="dropdown-content">
+                    <a href=".\ambientesVirtuais\meus-sons.html">Meus Sons</a>
+                    <a href=".\ambientesVirtuais\sons.html">Adquirir Sons</a>
+                </div>
+            </li>
+            <li><a href=".\ambientesVirtuais\parcerias.html">Parcerias</a></li>
+            <li><a href=".\ambientesVirtuais\sobre.html">Sobre</a></li>
+        </ul>
+
+
+
+        <div class="actions">
+            <button class="open-login" id="login-btn">Login</button>
+            <button class="open-register" id="register-btn">Registrar</button>
+        </div>
+    </header>
+
+
+    <!-- Pop-up Login -->
+    <div id="login-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="close-login">&times;</span>
+            <h2>Login</h2>
+            <form action="#" onsubmit="return entrar()">
+                <label for="email-login">E-mail:</label>
+                <input type="email" id="email_input_login" name="email" required>
+                <label for="password-login">Senha:</label>
+                <input type="password" id="senha_input_login" name="password" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pop-up Registro -->
+    <div id="register-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="close-register">&times;</span>
+            <h2>Registrar</h2>
+            <form action="#" onsubmit="return cadastrar()">
+                <label for="name-register">Nome:</label>
+                <input type="text" id="nome_input" name="name" required>
+                <label for="email-register">E-mail:</label>
+                <input type="email" id="email_input" name="email" required>
+                <label for="password-register">Senha:</label>
+                <input type="password" id="senha_input" name="password" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Section Hero (Início) -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Bem-vindo ao seu Ambiente Virtual!</h1>
+            <p style="color:rgb(238, 238, 238)">Adquira sons de alta qualidade para os seus projetos.</p>
+            <a href=".\ambientesVirtuais\sons.html" class="cta-button">Explore Sons</a>
+        </div>
+    </section>
+
+    <!-- Secção para categorias -->
+
+    <!-- Secção para categorias -->
+    <section id="categorias" class="section categorias">
+        <h2 style="text-align: center; margin-top: 20px;">Categorias</h2>
+        <div class="categorias-container">
+            <a href=".\ambientesVirtuais\sons.html?categoria=natureza" class="categoria-item">
+                <img src=".\ambienteAssets\natureza.png" alt="Natureza">
+                <p>Natureza</p>
+            </a>
+            <a href=".\ambientesVirtuais\sons.html?categoria=restaurante" class="categoria-item">
+                <img src=".\ambienteAssets\restaurante.png" alt="Restaurante">
+                <p>Restaurante</p>
+            </a>
+            <a href=".\ambientesVirtuais\sons.html?categoria=cidade" class="categoria-item">
+                <img src=".\ambienteAssets/cidade.png" alt="Cidade">
+                <p>Cidade</p>
+            </a>
+            <!-- espaço para adicionar mais categorias -->
+        </div>
+    </section>
+
+    <!-- Section Adquirir Sons -->
+    <section id="adquirir-sons" class="feature-section">
+        <div class="feature-content">
+            <h2>Adquirir Sons</h2>
+            <p>Descubra uma vasta biblioteca de sons de alta qualidade para enriquecer seus projetos. <br>Escolha entre
+                efeitos sonoros individuais ou cenários completos.</p>
+            <a href=".\ambientesVirtuais\sons.html" class="cta-button">Explorar Sons</a>
+        </div>
+        <div class="feature-image">
+            <img src=".\ambienteAssets/adquirir-sons.png" alt="Adquirir Sons">
+        </div>
+    </section>
+
+    <!-- Section Ambiente Virtual -->
+    <section id="ambiente-virtual" class="feature-section">
+        <div class="feature-content">
+            <h2>Ambiente Virtual</h2>
+            <p>Personalize ou crie ambientes virtuais únicos.<br> Adicione sons e efeitos para uma experiência
+                completamente imersiva.</p>
+            <a href=".\ambientesVirtuais\ambiente.html" class="cta-button">Criar Ambientes</a>
+        </div>
+        <div class="feature-image">
+            <img src=".\ambienteAssets\ambiente-virtual.png" alt="Ambiente Virtual">
+        </div>
+    </section>
+
+    <!-- Section Newsletter -->
+    <section id="newsletter" class="newsletter">
+        <div class="newsletter-container">
+            <h2>Assine Nossa Newsletter</h2>
+            <p>Receba novidades e ofertas exclusivas diretamente no seu e-mail.</p>
+            <form action="#" method="post" class="newsletter-form">
+                <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                <button type="submit">Inscrever-se</button>
+            </form>
+        </div>
+    </section>
+    <!-- Pop-up de Confirmação -->
+    <div id="subscribe-popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>Inscrição Concluída</h2>
+            <p>Ficou inscrito para futuras novidades.</p>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <p style="color: white">&copy; 2024 RLG | Todos os direitos reservados</p>
+    </footer>
+
+
+
+    <script src=".\ambientesVirtuaisJS\scripts.js"></script>
+
+    <script>
+
+        // Array para armazenar empresas cadastradas para validação de código de ativação 
+
+        function cadastrar() {
+            // aguardar();
+            //Recupere o valor da nova input pelo nome do id
+            // Agora vá para o método fetch logo abaixo
+            var nomeVar = nome_input.value;
+            var emailVar = email_input.value;
+            var senhaVar = senha_input.value;
+
+            // Enviando o valor da nova input
+            fetch("/lojaSom/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        window.alert(
+                            "Cadastro realizado com sucesso! Redirecionando para tela inicial..."
+                        )
+
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
+
+        function entrar() {
+            var emailVar = email_input_login.value;
+            var senhaVar = senha_input_login.value;
+
+            if (emailVar == "" || senhaVar == "") {
+                window.alert("Os campos de e-mail e senha devem ser preenchidos!");
+                return false;
+            }
+
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
+
+            fetch("/lojaSom/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                        console.log("ID USUARIO: " + sessionStorage.ID_USUARIO);
+                        console.log("EMAIL USUARIO: " + sessionStorage.EMAIL_USUARIO);
+                        console.log("NOME USUARIO: " + sessionStorage.NOME_USUARIO);
+
+                        window.alert("Login realizado com sucesso!");
+
+                        setTimeout(function () {
+                            window.location = "./ambientesVirtuais/indexLogado.html";
+                        }, 1000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+        }
+
+        // Listando empresas cadastradas 
+        function listar() {
+            fetch("/empresas/listar", {
+                method: "GET",
+            })
+                .then(function (resposta) {
+                    resposta.json().then((empresas) => {
+                        empresas.forEach((empresa) => {
+                            listaEmpresasCadastradas.push(empresa);
+
+                            console.log("listaEmpresasCadastradas")
+                            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+                        });
+                    });
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+        }
+
+        function sumirMensagem() {
+            cardErro.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

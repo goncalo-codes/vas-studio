@@ -1,0 +1,703 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+/* Header */
+#main-header {
+    background-color: #222; 
+    transition: background-color 0.3s ease-in-out;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#main-header.scrolled {
+    background-color: #222;
+}
+
+ul.menu li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    position: relative;
+}
+
+ul.menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #bba186; 
+    transition: width 0.3s ease;
+}
+
+ul.menu li a:hover::after {
+    width: 100%; 
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+.actions button {
+    padding: 8px 15px;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.actions button:hover {
+    background-color: #e0c2a1;
+    color: #000;
+}
+
+ul.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul.menu li {
+    margin: 0 20px;
+    position: relative;
+}
+
+ul.menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+}
+
+li.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+}
+
+/* Dropdown Content */
+li.dropdown {
+    position: relative;
+}
+
+li.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Estilo do conteúdo do dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    opacity: 1;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    background-color: #222;
+    border-radius: 5px; 
+}
+
+li.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+.dropdown-content a {
+    color: white; 
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+/* Pop-ups */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+    text-align: center;
+}
+
+.popup-content2 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+    text-align: center;
+}
+
+.popup-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.popup-content2 h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.popup-content form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.popup-content2 form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.popup-content form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.popup-content2 form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.popup-content form button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #a38667;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.popup-content2 form button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #a38667;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.popup-content form button:hover {
+    background-color: #a38667;
+}
+
+.popup-content2 form button:hover {
+    background-color: #a38667;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #main-header {
+        flex-wrap: wrap;
+    }
+}
+
+/* Container de Sons */
+.sons-container {
+    flex: 3;
+    display: grid !important; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 5px; 
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ddd;
+    justify-items: center; 
+    width: 80%; 
+    min-height: 500px; 
+    max-width: 100%; 
+    margin-bottom: 50px;
+    margin-top: 90px;
+    position: relative;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 80%;
+    }
+
+    #lista-sons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sons-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .son-card {
+        width: 90%;
+    }
+
+    #filtro-categorias {
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+
+/* Card dos Sons */
+.son-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px; /* Reduzir o padding para diminuir a altura */
+    height: 180px; /* Reduzir a altura das cards */
+    margin: 5px; /* Reduzir a margem entre as cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    max-width: 200px;
+    width: 100%; /* Garante que as cards ocupem toda a largura disponível */
+    box-sizing: border-box;
+    position: relative;
+}
+.son-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.son-card h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.son-card audio {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.son-card input[type="range"] {
+    width: 90%;
+    margin: 10px 0;
+    border-radius: 5px;
+    appearance: none;
+    height: 5px;
+    background: #ccc;
+    outline: none;
+}
+
+.son-card input[type="range"]:focus {
+    background: #666;
+}
+
+.son-card label {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Estilo para a imagem logo */
+.Logo {
+    cursor: pointer; 
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+}
+
+/* Efeito de hover para indicar interatividade */
+.Logo:hover {
+    transform: scale(1.1); 
+    opacity: 0.8; 
+}
+
+.center-content {
+    text-align: center;
+    margin-top: 100px;
+}
+
+
+.dropdownn-container, .customize-button {
+    display: inline-block; 
+    vertical-align: middle; 
+    margin-left: 10px; 
+}
+
+.dropdownn-container {
+    position: relative; 
+}
+
+.dropdownn-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #b6a38f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.dropdownn-button:hover {
+    background-color: #9e8a75;
+}
+
+.dropdownn-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+    margin-top: 19px;
+}
+
+.dropdownn-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.dropdownn-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdownn-container:hover .dropdownn-menu {
+    display: block;
+}
+
+.customize-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #a8937d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.customize-button:hover {
+    background-color: #97836e;
+}
+
+
+.dynamic-content {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/*Botão Play All*/
+#play-all-button {
+    position: absolute; 
+    top: -65px; 
+    left: 50%; 
+    transform: translateX(-61%); /* Ajusta o alinhamento */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #a8937d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    z-index: 1; /* Garante que o botão fique acima de outros elementos */
+}
+
+#play-all-button:hover {
+    background-color: #97836e;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+#play-all-button:focus {
+    outline: none;
+}
+
+/* Estilos do Popup */
+.popup2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semitransparente */
+    display: none; /* Inicialmente escondido */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que o popup fique acima dos outros conteúdos */
+}
+
+.popup-content2 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 900px;
+    max-height: 80%;
+    overflow-y: auto; /* Permite rolar caso o conteúdo ultrapasse a altura */
+    display: flex;
+    flex-direction: column; /* Organiza conteúdo em coluna */
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Botão de fechar o popup */
+.close-popup2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#son-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.son-item {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;
+    width: 200px;
+}   
+
+/* Botão "+" (ajustes feitos anteriormente) */
+.plus-button {
+    background-color: #9b7a56;
+    color: white;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.plus-button:hover {
+    color: white; 
+    transform: scale(1.05); 
+}
+
+.add-to-son-container {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.add-to-son-container:hover {
+    background-color: #45a049;
+}
+
+.add-button {
+    background-color: #f9f9f9;
+    color: #333; 
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    
+}
+
+.add-button:hover {
+    background-color: #c7a47d; 
+    color: white; 
+    transform: scale(1.05); 
+}
+
+/* Estilo para o dropdown */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-menu a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #575757;
+}
+
+/* Efeito visual para tornar o nome do usuário claramente clicável */
+#b_usuario {
+    cursor: pointer; 
+    transition: color 0.3s, border-color 0.3s; 
+    border: 2px solid transparent; 
+    padding: 2px 8px; 
+    border-radius: 5px; 
+    color: #fcfbfb; 
+    border-color: #ffffff; 
+}
+#b_usuario:hover {
+    color: #eed798; 
+    border-color: #ebd59b;
+}
+
+/* Botão de Play*/
+.play-button {
+    background-color: #f9f9f9;
+    color: #333; 
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 10px; 
+    font-size: 14px; 
+    margin-top: 10px; 
+    cursor: pointer; 
+}
+
+.play-button:hover {
+    background-color: #c7a47d; 
+    color: white; 
+    transform: scale(1.05); 
+}
+
+.play-button:active {
+    background-color: #ddd; 
+    transform: translateY(1px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+

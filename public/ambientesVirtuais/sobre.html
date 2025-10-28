@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sobre Nós - Loja de Sons</title>
+    <link rel="stylesheet" href="..\ambientesVirtuaisCSS\styles.css">
+    <style>
+        /* Estilo para a imagem logo */
+        .Logo {
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .Logo:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        /* Estilos para a página Sobre */
+        .about-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .about-list li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .funcionalidade {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .funcionalidade h3 {
+            color: #c7a47d;
+            margin-bottom: 10px;
+        }
+
+        .tech-section {
+            padding: 60px 10%;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .tech-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .tech-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .tech-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            width: 150px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .tech-item p {
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* Estilos específicos para as imagens da missão e funcionamento */
+        .feature-image img {
+            max-width: 100%;
+            height: auto;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo para ajustar a posição da imagem de fundo do hero */
+        .hero {
+            background-position: center 30%;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Estilos para os pop-ups */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            max-width: 90%;
+            position: relative;
+            text-align: center;
+        }
+
+        .popup-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .popup-content form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .popup-content form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .popup-content form button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #a38667;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .popup-content form button:hover {
+            background-color: #c7a47d;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Ajustes para mobile */
+        @media (max-width: 768px) {
+            .tech-item {
+                width: 120px;
+                padding: 15px;
+            }
+
+            .tech-item img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .feature-section {
+                flex-direction: column;
+            }
+
+            .feature-image img {
+                max-height: 250px;
+                margin-top: 20px;
+            }
+
+            .hero {
+                background-position: center 20%;
+            }
+
+            .popup-content {
+                width: 90%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <a href="/index.html">
+            <img src="..\ambienteAssets\logo.png" width="70" height="60" alt="Logo" class="Logo">
+        </a>
+
+        <ul class="menu">
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="ambientesVirtuais.html">Ambiente Virtual</a></li>
+            <li><a href="editorVideo.html">Editor de Video</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Sons</a>
+                <div class="dropdown-content">
+                    <a href="meus-sons.html">Meus Sons</a>
+                    <a href="sons.html">Adquirir Sons</a>
+                </div>
+            </li>
+            <li><a href="parcerias.html">Parcerias</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+
+        <div class="actions">
+            <button class="open-login" id="login-btn">Login</button>
+            <button class="open-register" id="register-btn">Registrar</button>
+        </div>
+    </header>
+
+    <!-- Pop-up Login -->
+    <div id="login-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="close-login">&times;</span>
+            <h2>Login</h2>
+            <form action="#" onsubmit="return entrar()">
+                <label for="email-login">E-mail:</label>
+                <input type="email" id="email_input_login" name="email" required>
+                <label for="password-login">Senha:</label>
+                <input type="password" id="senha_input_login" name="password" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pop-up Registro -->
+    <div id="register-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="close-register">&times;</span>
+            <h2>Registrar</h2>
+            <form action="#" onsubmit="return cadastrar()">
+                <label for="name-register">Nome:</label>
+                <input type="text" id="nome_input" name="name" required>
+                <label for="email-register">E-mail:</label>
+                <input type="email" id="email_input" name="email" required>
+                <label for="password-register">Senha:</label>
+                <input type="password" id="senha_input" name="password" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hero Section para Sobre - Imagem ajustada para baixo -->
+    <section class="hero" style="background-image: url('../ambienteAssets/bg_sobre.png'); height: 60vh;">
+        <div class="hero-content">
+            <h1>Sobre Nós</h1>
+            <p style="color:rgb(238, 238, 238)">Conheça a história e a missão por trás da nossa plataforma de ambientes
+                sonoros</p>
+        </div>
+    </section>
+
+    <!-- Seção Nossa Missão -->
+    <section class="feature-section">
+        <div class="feature-content">
+            <h2>Nossa Missão</h2>
+            <p>Criamos esta plataforma com um duplo propósito:</p>
+            <ul class="about-list">
+                <li>Fornecer <strong>ambientes sonoros imersivos</strong> para ajudar pessoas a estudar, relaxar ou
+                    simplesmente criar atmosferas personalizadas para seu dia-a-dia.</li>
+                <li>Oferecer uma <strong>ferramenta de edição de vídeo acessível</strong> para pequenas produtoras e
+                    criadores de conteúdo, combinando simplicidade de uso com qualidade profissional.</li>
+            </ul>
+            <p>Acreditamos que a criação de ambientes sonoros e a edição básica de vídeo não precisam ser complicadas ou
+                caras.</p>
+        </div>
+        <div class="feature-image">
+            <img src="../ambienteAssets/missao.png" alt="Nossa Missão" style="max-height: 350px;">
+        </div>
+    </section>
+
+    <!-- Seção Como Funciona -->
+    <section class="feature-section" style="flex-direction: row-reverse; background-color: #f0f0f0;">
+        <div class="feature-content">
+            <h2>Como Funciona</h2>
+            <p>Nossa plataforma oferece três funcionalidades principais:</p>
+            <div class="funcionalidade">
+                <h3>Sandbox de Ambientes</h3>
+                <p>Experimente combinar diferentes sons para criar ambientes únicos. Controle volume, velocidade e
+                    duração de cada elemento.</p>
+            </div>
+            <div class="funcionalidade">
+                <h3>Editor de Vídeo Integrado</h3>
+                <p>Adicione seus sons a vídeos com precisão, controlando quando cada áudio começa e quanto tempo dura.
+                </p>
+            </div>
+            <div class="funcionalidade">
+                <h3>Loja de Sons</h3>
+                <p>Compre sons individuais ou pacotes completos de ambientes prontos para uso imediato.</p>
+            </div>
+        </div>
+        <div class="feature-image">
+            <img src="../ambienteAssets/funcionamento.png" alt="Como Funciona" style="max-height: 350px;">
+        </div>
+    </section>
+
+    <!-- Seção Tecnologias -->
+    <section class="tech-section">
+        <h2>Tecnologias Utilizadas</h2>
+        <p>Para criar esta experiência completa, utilizamos as seguintes tecnologias:</p>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <img src="../ambienteAssets/html.png" alt="HTML5">
+                <p>HTML5</p>
+            </div>
+            <div class="tech-item">
+                <img src="..\ambienteAssets/css.png" alt="CSS3">
+                <p>CSS3</p>
+            </div>
+            <div class="tech-item">
+                <img src="..\ambienteAssets/js.png" alt="JavaScript">
+                <p>JavaScript</p>
+            </div>
+            <div class="tech-item">
+                <img src="..\ambienteAssets/nodejs.png" alt="Node.js">
+                <p>Node.js</p>
+            </div>
+            <div class="tech-item">
+                <img src="..\ambienteAssets/ffmpeg.png" alt="FFmpeg">
+                <p>FFmpeg</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Newsletter -->
+    <section id="newsletter" class="newsletter">
+        <div class="newsletter-container">
+            <h2>Junte-se à Nossa Comunidade</h2>
+            <p>Receba atualizações, novos sons e dicas para criar os melhores ambientes sonoros.</p>
+            <form action="#" method="post" class="newsletter-form">
+                <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                <button type="submit">Inscrever-se</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p style="color: white">&copy; 2024 RLG | Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Controle dos pop-ups de login/register
+        document.addEventListener('DOMContentLoaded', function () {
+            // Elementos
+            const loginBtn = document.getElementById('login-btn');
+            const registerBtn = document.getElementById('register-btn');
+            const loginPopup = document.getElementById('login-popup');
+            const registerPopup = document.getElementById('register-popup');
+            const closeLogin = document.getElementById('close-login');
+            const closeRegister = document.getElementById('close-register');
+
+            // Abrir pop-up de login
+            if (loginBtn) {
+                loginBtn.addEventListener('click', function () {
+                    loginPopup.style.display = 'flex';
+                });
+            }
+
+            // Abrir pop-up de registro
+            if (registerBtn) {
+                registerBtn.addEventListener('click', function () {
+                    registerPopup.style.display = 'flex';
+                });
+            }
+
+            // Fechar pop-ups
+            if (closeLogin) {
+                closeLogin.addEventListener('click', function () {
+                    loginPopup.style.display = 'none';
+                });
+            }
+
+            if (closeRegister) {
+                closeRegister.addEventListener('click', function () {
+                    registerPopup.style.display = 'none';
+                });
+            }
+
+            // Fechar ao clicar fora do pop-up
+            window.addEventListener('click', function (event) {
+                if (event.target === loginPopup) {
+                    loginPopup.style.display = 'none';
+                }
+                if (event.target === registerPopup) {
+                    registerPopup.style.display = 'none';
+                }
+            });
+        });
+
+        function cadastrar() {
+            var nomeVar = nome_input.value;
+            var emailVar = email_input.value;
+            var senhaVar = senha_input.value;
+
+            fetch("/lojaSom/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nomeServer: nomeVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        window.alert("Cadastro realizado com sucesso! Redirecionando para tela inicial...");
+                        window.location.href = "../index.html";
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    window.alert("Erro ao cadastrar! Por favor, tente novamente.");
+                });
+
+            return false;
+        }
+
+        function entrar() {
+            var emailVar = email_input_login.value;
+            var senhaVar = senha_input_login.value;
+
+            if (emailVar == "" || senhaVar == "") {
+                window.alert("Os campos de e-mail e senha devem ser preenchidos!");
+                return false;
+            }
+
+            fetch("/lojaSom/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            })
+                .then(function (resposta) {
+                    console.log("ESTOU NO THEN DO entrar()!");
+
+                    if (resposta.ok) {
+                        resposta.json().then(json => {
+                            sessionStorage.EMAIL_USUARIO = json.email;
+                            sessionStorage.NOME_USUARIO = json.nome;
+                            sessionStorage.ID_USUARIO = json.id;
+
+                            window.alert("Login realizado com sucesso!");
+                            window.location.href = "../ambientesVirtuais/sobreLogado.html";
+                        });
+                    } else {
+                        window.alert("E-mail ou senha incorretos!");
+                        throw "Houve um erro ao tentar realizar o login!";
+                    }
+                })
+                .catch(function (erro) {
+                    console.log(erro);
+                });
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>

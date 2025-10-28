@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loja de Sons</title>
+    <link rel="stylesheet" href="..\ambientesVirtuaisCSS\styles.css">
+
+    <style>
+        /* Estilo da imagem de fundo personalizada */
+        .perfil-container {
+            padding: 20px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #uploadFundo {
+            display: block;
+            margin: 15px 0;
+        }
+
+        .perfil-informacoes form label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        .perfil-informacoes form input, 
+        .perfil-informacoes form select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .perfil-informacoes form button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #cc9a4f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .perfil-informacoes form button:hover {
+            background-color: #b48846;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <a href="../ambientesVirtuais/indexLogado.html">
+            <img src="..\ambienteAssets\logo.png" width="70" height="70" alt="Logo" class="Logo">
+        </a>    
+        
+       <style>
+           /* Estilo para a imagem logo */
+           .Logo {
+               cursor: pointer; /* Aparece como um ponteiro, indicando que é clicável */
+               transition: transform 0.3s ease, opacity 0.3s ease; /* Suaviza a transição */
+           }
+        
+           /* Efeito de hover para indicar interatividade */
+           .Logo:hover {
+               transform: scale(1.1); /* Aumenta levemente o tamanho da imagem */
+               opacity: 0.8; /* Diminui um pouco a opacidade */
+           }
+       </style>
+   
+        <ul class="menu">
+            <li><a href="../ambientesVirtuais/indexLogado.html">Início</a></li>
+            <li><a href="../ambientesVirtuais/ambientesVirtuaisLogado.html">Ambiente Virtual</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Sons</a>
+                <div class="dropdown-content">
+                    <a href="../ambientesVirtuais/meus-sonsLogado.html">Meus Sons</a>
+                    <a href="../ambientesVirtuais/sonsLogado.html">Adquirir Sons</a>
+                </div>
+            </li>
+        </ul>
+
+        <style>
+            /* Estilo para o dropdown */
+            .dropdown-container {
+                position: relative;
+                display: inline-block;
+            }
+        
+            .dropdown-btn {
+                background-color: transparent;
+                color: white;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold;
+            }
+        
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                background-color: #333;
+                min-width: 150px;
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                right: 0;
+            }
+        
+            .dropdown-menu a {
+                color: white;
+                padding: 10px 15px;
+                text-decoration: none;
+                display: block;
+            }
+        
+            .dropdown-menu a:hover {
+                background-color: #575757;
+            }
+
+            /* Efeito visual para tornar o nome do usuário claramente clicável */
+            #b_usuario {
+                cursor: pointer; /* Mudança do cursor para indicar que é clicável */
+                transition: color 0.3s, border-color 0.3s; /* Suaviza a transição da cor e do contorno */
+                border: 2px solid transparent; /* Contorno inicial transparente */
+                padding: 2px 8px; /* Espaçamento interno para o contorno */
+                border-radius: 5px; /* Arredondamento dos cantos do contorno */
+                color: #fcfbfb; /* Muda a cor quando o mouse passa por cima */
+                border-color: #ffffff; /* Muda a cor do contorno ao passar o mouse */
+            }
+            #b_usuario:hover {
+                color: #eed798; /* Muda a cor quando o mouse passa por cima */
+                border-color: #ebd59b; /* Muda a cor do contorno ao passar o mouse */
+            }
+        </style>
+        
+    <div class="actions-usuario">
+        <button id="userBtn" class="dropdown-btn">
+            <span id="b_usuario">Usuário</span> <!-- Aqui o nome do usuário será inserido -->
+        </button>
+        <div id="dropdownMenu" class="dropdown-menu">
+            <a href="perfil.html">Perfil</a>
+            <a href="#" onclick="logout()">Deslogar</a>
+        </div>
+    </div>
+    </header>
+        
+
+     <!-- Main Content -->
+     <main id="perfil-main">
+        <section class="perfil-container" id="perfilContainer" style="margin-top: 150px">
+            <div class="perfil-imagem"  style="margin-right: 30px">
+                <img id="imagemPerfil" src="../ambienteAssets/avatar.png" alt="Imagem de Perfil"><br>
+                <label for="uploadImagem" class="custom-upload">
+                    Carregar nova imagem
+                </label>
+                <input type="file" id="uploadImagem" accept="image/*" hidden>
+            </div>
+            <div class="perfil-informacoes">
+                <form id="formPerfil">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" placeholder="Seu nome">
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="seu@email.com">
+
+                    <label for="dataNascimento">Data de Nascimento:</label>
+                    <input type="date" id="dataNascimento">
+
+                    <label for="localizacao">Localização:</label>
+                    <select id="localizacao">
+                        <option value="Portugal" selected>Portugal</option>
+                        <option value="Brasil">Brasil</option>
+                        <option value="Espanha">Espanha</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+
+                    <button type="button" id="salvarPerfil">Salvar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+            <style>
+                
+                /* perfil.css */
+                #perfil-main {
+                display: flex;
+                justify-content: center;
+                margin: 50px 0;
+            }
+
+
+            /* Perfil */
+            .perfil-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                max-width: 900px;
+                margin: 50px auto;
+                padding: 20px;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .perfil-imagem img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                border: 2px solid #ccc;
+                object-fit: cover;
+                margin-bottom: 10px;
+            }
+
+            .perfil-informacoes form {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                flex: 1;
+            }
+
+            .perfil-informacoes input,
+            .perfil-informacoes textarea,
+            .perfil-informacoes select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 14px;
+                resize: none;
+            }
+
+            .perfil-informacoes button {
+                padding: 10px;
+                background-color: #c7a47d;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .perfil-informacoes button:hover {
+                background-color: #a38667;
+            }
+
+            select[multiple] {
+                height: 100px;
+            }
+            .custom-upload {
+            display: inline-block;
+            padding: 8px 10px;
+            background-color: #c49457;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .custom-upload:hover {
+            background-color: #b18750;
+        }
+
+        /* Esconde o texto "Nenhum ficheiro selecionado" */
+        input[type="file"] {
+            display: none; /* Garante que o input de tipo file não seja visível */
+        }
+
+
+            </style>
+                   
+    <footer>
+        <p style="color: white">&copy; 2024 RLG | Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Referências aos elementos
+        const userBtn = document.getElementById('userBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const b_usuario = document.getElementById('b_usuario');
+
+        // Função para alternar o dropdown
+        userBtn.addEventListener('click', function(event) {
+            // Previne que o clique no botão faça rolar a página
+            event.stopPropagation();
+            // Alterna a visibilidade do dropdown
+            dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+        });
+
+        // Fecha o dropdown se clicar fora do botão
+        document.addEventListener('click', function(event) {
+            if (!userBtn.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+
+        // Função de logout (pode incluir redirecionamento ou limpar sessão)
+        function logout() {
+            // Limpa o sessionStorage e redireciona para a página inicial
+            sessionStorage.removeItem('NOME_USUARIO');
+            window.location.href = '/index.html'; // Redireciona para a página inicial
+        }
+
+        // Recupera o nome do usuário do sessionStorage e exibe
+        if (sessionStorage.getItem('NOME_USUARIO')) {
+            b_usuario.innerHTML = sessionStorage.getItem('NOME_USUARIO');
+        } else {
+            b_usuario.innerHTML = 'Usuário'; // Caso o nome do usuário não esteja na sessão
+        }
+    </script>   
+    <script>
+            /* perfil.js */
+        document.getElementById('uploadImagem').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('imagemPerfil').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('salvarPerfil').addEventListener('click', function () {
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+
+            if (nome && email) {
+                alert('Perfil atualizado com sucesso!');
+                // Aqui você pode adicionar a lógica para salvar os dados no localStorage ou enviar para um backend.
+            } else {
+                alert('Por favor, preencha todos os campos!');
+            }
+        });
+    </script>
+
+    <script src="..\ambientesVirtuaisJS\scripts.js"></script>
+</body>
+</html>

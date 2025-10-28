@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loja de Sons</title>
+    <link rel="stylesheet" href="..\ambientesVirtuaisCSS\styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <a href="./indexLogado.html">
+            <img src="..\ambienteAssets\logo.png" width="70" height="60" alt="Logo" class="Logo">
+        </a>
+
+        <style>
+            /* Estilo para a imagem logo */
+            .Logo {
+                cursor: pointer;
+                /* Aparece como um ponteiro, indicando que é clicável */
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                /* Suaviza a transição */
+            }
+
+            /* Efeito de hover para indicar interatividade */
+            .Logo:hover {
+                transform: scale(1.1);
+                /* Aumenta levemente o tamanho da imagem */
+                opacity: 0.8;
+                /* Diminui um pouco a opacidade */
+            }
+        </style>
+
+        <ul class="menu">
+            <li><a href="indexLogado.html">Início</a></li>
+            <li><a href="ambientesVirtuaisLogado.html">Ambiente Virtual</a></li>
+            <li><a href="editorVideoLogado.html">Editor de Vídeo</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Sons</a>
+                <div class="dropdown-content">
+                    <a href="meus-sonsLogado.html">Meus Sons</a>
+                    <a href="sonsLogado.html">Adquirir Sons</a>
+                </div>
+            </li>
+            <li><a href="parceriasLogado.html">Parcerias</a></li>
+            <li><a href="sobreLogado.html">Sobre</a></li>
+        </ul>
+
+        <style>
+            .parcerias-container {
+                padding: 60px 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .parcerias-intro {
+                text-align: center;
+                margin-bottom: 50px;
+            }
+
+            .parcerias-intro h2 {
+                font-size: 2.2rem;
+                color: #333;
+                margin-bottom: 20px;
+                position: relative;
+                display: inline-block;
+            }
+
+            .parcerias-intro h2::after {
+                content: '';
+                position: absolute;
+                width: 50%;
+                height: 3px;
+                background-color: #c7a47d;
+                bottom: -10px;
+                left: 25%;
+            }
+
+            .parcerias-intro p {
+                font-size: 1.1rem;
+                color: #555;
+                max-width: 800px;
+                margin: 0 auto 30px;
+                line-height: 1.6;
+            }
+
+            .parcerias-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 40px;
+                margin-top: 40px;
+            }
+
+            .parceria-card {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .parceria-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            }
+
+            .parceria-imagem {
+                height: 200px;
+                /* Altura fixa para todas as imagens */
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .parceria-imagem img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                /* Garante que a imagem cubra todo o espaço mantendo proporções */
+                transition: transform 0.3s ease;
+            }
+
+            .parceria-card:hover .parceria-imagem img {
+                transform: scale(1.05);
+                /* Efeito de zoom suave ao passar o mouse */
+            }
+
+            .parceria-info {
+                padding: 25px;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+            }
+
+            .parceria-info h3 {
+                font-size: 1.5rem;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            .parceria-info p {
+                color: #666;
+                margin-bottom: 15px;
+                line-height: 1.6;
+                flex-grow: 1;
+                overflow-y: auto;
+                /* Habilita scroll vertical quando necessário */
+                max-height: calc(4 * 1.6em);
+                /* Limita a altura equivalente a 4 linhas */
+                padding-right: 5px;
+                /* Espaço para não colar no scroll */
+            }
+
+            /* Estilizando a barra de scroll */
+            .parceria-info p::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            .parceria-info p::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+
+            .parceria-info p::-webkit-scrollbar-thumb {
+                background: #c7a47d;
+                border-radius: 10px;
+            }
+
+            .parceria-info p::-webkit-scrollbar-thumb:hover {
+                background: #a38667;
+            }
+
+            .parceria-meta {
+                margin-top: auto;
+                /* Empurra o rodapé para baixo */
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 15px;
+                border-top: 1px solid #eee;
+            }
+
+            .parceria-empresa {
+                display: flex;
+                align-items: center;
+            }
+
+            .parceria-empresa img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+                object-fit: cover;
+            }
+
+            .parceria-empresa span {
+                font-weight: bold;
+                color: #333;
+            }
+
+            .parceria-sons {
+                background-color: #f5f5f5;
+                padding: 8px 12px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                color: #666;
+            }
+
+            .cta-parcerias {
+                text-align: center;
+                margin-top: 60px;
+                padding: 40px 20px;
+                background-color: #f9f9f9;
+                border-radius: 10px;
+            }
+
+            .cta-parcerias h3 {
+                font-size: 1.8rem;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            .cta-parcerias p {
+                font-size: 1.1rem;
+                color: #666;
+                max-width: 700px;
+                margin: 0 auto 30px;
+                line-height: 1.6;
+            }
+
+            .saiba-mais-btn {
+                background-color: #c7a47d;
+                color: white;
+                padding: 8px 18px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+
+                min-width: 100px;
+                /* você pode ajustar esse valor se necessário */
+                white-space: nowrap;
+                text-align: center;
+            }
+
+            .saiba-mais-btn:hover {
+                background-color: #a38667;
+                transform: translateY(-2px);
+            }
+
+            @media (max-width: 768px) {
+                .parcerias-hero {
+                    height: 50vh;
+                    margin-top: 70px;
+                }
+
+                .parcerias-hero-content h1 {
+                    font-size: 2.2rem;
+                }
+
+                .parcerias-hero-content p {
+                    font-size: 1rem;
+                }
+
+                .parcerias-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .parcerias-intro h2 {
+                    font-size: 1.8rem;
+                }
+
+                .cta-parcerias h3 {
+                    font-size: 1.5rem;
+                }
+            }
+
+            /* Estilo para o dropdown */
+            .dropdown-container {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-btn {
+                background-color: transparent;
+                color: white;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                background-color: #333;
+                min-width: 150px;
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                right: 0;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                padding: 10px 15px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #575757;
+            }
+
+            /* Efeito visual para tornar o nome do usuário claramente clicável */
+            #b_usuario {
+                cursor: pointer;
+                /* Mudança do cursor para indicar que é clicável */
+                transition: color 0.3s, border-color 0.3s;
+                /* Suaviza a transição da cor e do contorno */
+                border: 2px solid transparent;
+                /* Contorno inicial transparente */
+                padding: 2px 8px;
+                /* Espaçamento interno para o contorno */
+                border-radius: 5px;
+                /* Arredondamento dos cantos do contorno */
+                color: #fcfbfb;
+                /* Muda a cor quando o mouse passa por cima */
+                border-color: #ffffff;
+                /* Muda a cor do contorno ao passar o mouse */
+            }
+
+            #b_usuario:hover {
+                color: #eed798;
+                /* Muda a cor quando o mouse passa por cima */
+                border-color: #ebd59b;
+                /* Muda a cor do contorno ao passar o mouse */
+            }
+        </style>
+
+
+        <div class="actions-usuario">
+            <button id="userBtn" class="dropdown-btn">
+                <span id="b_usuario">Usuário</span> <!-- Aqui o nome do usuário será inserido -->
+            </button>
+            <div id="dropdownMenu" class="dropdown-menu">
+                <a href="..\.\Perfil\perfil.html">Perfil</a>
+                <a href="#" onclick="logout()">Deslogar</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="parcerias-container" id="parcerias">
+        <div style="margin-top: 60px" class="parcerias-intro">
+            <h2>Trabalhos Destacados</h2>
+            <p>Estes são alguns dos projetos incríveis que utilizaram nossos ambientes sonoros para criar experiências
+                audiovisuais imersivas e memoráveis.</p>
+        </div>
+
+        <div class="parcerias-grid">
+            <!-- Parceria 1 -->
+            <div class="parceria-card">
+                <div class="parceria-imagem">
+                    <img src="/ambienteAssets/parceria1Capa.png" alt="Vienna">
+                </div>
+                <div class="parceria-info">
+                    <h3>Vienna</h3>
+                    <p>Uma interpretação contemporânea do clássico “Vienna”, de Billy Joel</p>
+                    <div class="parceria-meta">
+                        <div class="parceria-empresa">
+                            <img src="/ambienteAssets/parceria1Autor.png" alt="Diretor">
+                            <span>Maria Carolina Castilho </span>
+                        </div>
+                        <a href="https://viennamv.netlify.app" class="saiba-mais-btn" target="_blank">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parceria 2 -->
+            <div class="parceria-card">
+                <div class="parceria-imagem">
+                    <img style="object-position: center 100%;" src="/ambienteAssets/parceria2Capa.png"
+                        alt="Programação Divina">
+                </div>
+                <div class="parceria-info">
+                    <h3>Programação Divina</h3>
+                    <p>Programação Divina é uma curta-metragem produzida com o objetivo de promover a plataforma VAS.
+                        Combina ficção científica e comédia para explorar a relação entre tecnologia e realidade, com um
+                        toque de humor e crítica social.</p>
+                    <div class="parceria-meta">
+                        <div class="parceria-empresa">
+                            <img src="/ambienteAssets/parceria2Autor.png" alt="Diretor">
+                            <span>Rúben Teixeira</span>
+                        </div>
+                        <a href="https://programacao22.netlify.app" class="saiba-mais-btn" target="_blank">Saiba
+                            Mais</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parceria 3 -->
+            <div class="parceria-card">
+                <div class="parceria-imagem">
+                    <img style="object-position: center 100%;" src="/ambienteAssets/parceria3Capa.png"
+                        alt="Programação Divina">
+                </div>
+                <div class="parceria-info">
+                    <h3>Entre Turnos</h3>
+                    <p>Uma curta-metragem que explora a fragmentação da identidade entre a rotina doméstica e a
+                        profissional, revelando o impacto psicológico de quem tenta se refugiar no trabalho como forma
+                        de escapar à dor emocional.</p>
+                    <div class="parceria-meta">
+                        <div class="parceria-empresa">
+                            <img src="/ambienteAssets/parceria3Autor.png" alt="Diretor">
+                            <span>Gonçalo Oliveira</span>
+                        </div>
+                        <a href="detalhes-vienna.html" class="saiba-mais-btn">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-parcerias">
+            <h3>Seu projeto aqui</h3>
+            <p>Utilizou nossos ambientes sonoros em seu trabalho? Entre em contato conosco para ter seu projeto
+                destacado em nossa página de parcerias e ganhar visibilidade.</p>
+            <a href="#" class="cta-button">Quero Participar</a>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <p style="color: white">&copy; 2024 RLG | Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Referências aos elementos
+        const userBtn = document.getElementById('userBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const b_usuario = document.getElementById('b_usuario');
+
+        // Função para alternar o dropdown
+        userBtn.addEventListener('click', function (event) {
+            // Previne que o clique no botão faça rolar a página
+            event.stopPropagation();
+            // Alterna a visibilidade do dropdown
+            dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+        });
+
+        // Fecha o dropdown se clicar fora do botão
+        document.addEventListener('click', function (event) {
+            if (!userBtn.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+
+        // Função de logout (pode incluir redirecionamento ou limpar sessão)
+        function logout() {
+            // Limpa o sessionStorage e redireciona para a página inicial
+            sessionStorage.removeItem('NOME_USUARIO');
+            window.location.href = '/index.html'; // Redireciona para a página inicial
+        }
+
+        // Recupera o nome do usuário do sessionStorage e exibe
+        if (sessionStorage.getItem('NOME_USUARIO')) {
+            b_usuario.innerHTML = sessionStorage.getItem('NOME_USUARIO');
+        } else {
+            b_usuario.innerHTML = 'Usuário'; // Caso o nome do usuário não esteja na sessão
+        }
+    </script>
+
+</body>
+
+</html>

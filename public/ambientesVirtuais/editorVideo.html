@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loja de Sons</title>
+    <link rel="stylesheet" href="..\ambientesVirtuaisCSS\ambientesVirtuais.css">
+    <link rel="stylesheet" href="..\ambientesVirtuaisCSS\editorCSS.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        .Logo {
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .Logo:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .audios-preview {
+            margin-top: 10px;
+            border: 1px dashed #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 60px;
+            transition: min-height 0.3s ease;
+        }
+
+        .selected-audio {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .selected-audio:last-child {
+            margin-bottom: 0;
+        }
+
+        .selected-audio:hover {
+            background-color: #e9ecef;
+        }
+
+        .audio-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-grow: 1;
+        }
+
+        .audio-details {
+            flex-grow: 1;
+        }
+
+        .audio-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .audio-actions button {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #6c757d;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .audio-actions button:hover {
+            opacity: 0.8;
+        }
+
+        .audio-actions .remove-selected {
+            background-color: #dc3545;
+        }
+
+        .audio-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 80px;
+        }
+
+        .control-group label {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 4px;
+        }
+
+        .control-group input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .editor-card {
+            min-height: 400px;
+            transition: min-height 0.3s ease;
+        }
+
+        .btn-add-audio {
+            margin-top: 15px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-content h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .popup-content label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .popup-content input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .popup-content button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .popup-content button:hover {
+            background-color: #0056b3;
+        }
+
+        .popup .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .popup .close:hover {
+            color: #000;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <a href="/index.html">
+            <img src="..\ambienteAssets\logo.png" width="70" height="60" alt="Logo" class="Logo">
+        </a>
+
+        <ul class="menu">
+            <li><a href="..\index.html">Início</a></li>
+            <li><a href="ambientesVirtuais.html">Ambiente Virtual</a></li>
+            <li><a href="editorVideo.html">Editor de Vídeo</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Sons</a>
+                <div class="dropdown-content">
+                    <a href="meus-sons.html">Meus Sons</a>
+                    <a href="sons.html">Adquirir Sons</a>
+                </div>
+            </li>
+            <li><a href="parcerias.html">Parcerias</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+
+        <div class="actions">
+            <button class="open-login" id="login-btn">Login</button>
+            <button class="open-register" id="register-btn">Registrar</button>
+        </div>
+    </header>
+
+    <!-- Pop-ups -->
+    <div id="login-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="close-login">&times;</span>
+            <h2>Login</h2>
+            <form action="#" onsubmit="return entrar()">
+                <label for="email-login">E-mail:</label>
+                <input type="email" id="email_input_login" name="email" required>
+                <label for="password-login">Senha:</label>
+                <input type="password" id="senha_input_login" name="password" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="register-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="close-register">&times;</span>
+            <h2>Registrar</h2>
+            <form action="#" onsubmit="return cadastrar()">
+                <label for="name-register">Nome:</label>
+                <input type="text" id="nome_input" name="name" required>
+                <label for="email-register">E-mail:</label>
+                <input type="email" id="email_input" name="email" required>
+                <label for="password-register">Senha:</label>
+                <input type="password" id="senha_input" name="password" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <main class="editor-container">
+        <div class="editor-header">
+            <h1><i class="fas fa-video"></i> Editor de Vídeo Avançado</h1>
+            <p class="subtitle">Combine seus vídeos com trilhas sonoras profissionais</p>
+        </div>
+
+        <div class="editor-card">
+            <form id="uploadForm" class="editor-form">
+                <div class="form-section">
+                    <div class="form-group file-upload">
+                        <label for="videoInput" class="upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span class="upload-text">Vídeo Principal (MP4)</span>
+                            <span class="file-name" id="videoFileName">Nenhum arquivo selecionado</span>
+                        </label>
+                        <input type="file" id="videoInput" accept="video/mp4" required class="hidden-upload">
+                    </div>
+
+                    <div class="form-group audio-selection">
+                        <label>Trilhas Sonoras (máx. 6)</label>
+                        <div id="selectedAudiosContainer" class="audios-preview">
+                            <p id="noAudioSelected"><i class="fas fa-music"></i> Nenhum áudio selecionado</p>
+                        </div>
+                        <input type="hidden" id="selectedAudiosPaths">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="processButton" class="btn-process">
+                        <i class="fas fa-cogs"></i> Processar Novo Vídeo
+                    </button>
+                    <div id="status" class="status-message"></div>
+                    <a id="downloadLink" class="download-button">
+                        <i class="fas fa-download"></i> Download do Vídeo Processado
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <button id="btnAddAudio" class="btn-add-audio">
+            <i class="fas fa-plus-circle"></i> Selecionar Trilha Sonora
+        </button>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p style="color: white">&copy; 2024 RLG | Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        function cadastrar() {
+            var nomeVar = nome_input.value;
+            var emailVar = email_input.value;
+            var senhaVar = senha_input.value;
+
+            fetch("/lojaSom/cadastrar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    nomeServer: nomeVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar,
+                }),
+            })
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        window.alert("Cadastro realizado com sucesso! Redirecionando para tela inicial...");
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
+
+        function entrar() {
+            var emailVar = email_input_login.value;
+            var senhaVar = senha_input_login.value;
+
+            if (emailVar == "" || senhaVar == "") {
+                window.alert("Os campos de e-mail e senha devem ser preenchidos!");
+                return false;
+            }
+
+            fetch("/lojaSom/autenticar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                        window.alert("Login realizado com sucesso!");
+
+                        setTimeout(function () {
+                            window.location = "/ambientesVirtuais/editorVideoLogado.html";
+                        }, 1000);
+                    });
+                } else {
+                    window.alert("Houve um erro ao tentar realizar o login!");
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+            });
+
+            return false;
+        }
+
+        function mensagem() {
+            window.alert("Entre com sua conta e adquira seus sons ou pacotes para ter acesso a esta funcionalidade!");
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const processButton = document.getElementById('processButton');
+            const addAudioButton = document.getElementById('btnAddAudio');
+            const videoInput = document.getElementById('videoInput');
+            const sonsContainer = document.querySelector('.sons-container');
+            const playAllButton = document.createElement('button');
+            const loginPopup = document.getElementById('login-popup');
+            const registerPopup = document.getElementById('register-popup');
+            const loginButtons = document.querySelectorAll('.open-login');
+            const registerButtons = document.querySelectorAll('.open-register');
+            const closeButtons = document.querySelectorAll('.close')
+            playAllButton.id = 'play-all-button';
+            playAllButton.textContent = 'Play All';
+
+            loginButtons.forEach(button => {
+                button.addEventListener('click', () => loginPopup.style.display = 'flex');
+            });
+
+            registerButtons.forEach(button => {
+                button.addEventListener('click', () => registerPopup.style.display = 'flex');
+            });
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    loginPopup.style.display = 'none';
+                    registerPopup.style.display = 'none';
+                });
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === loginPopup) loginPopup.style.display = 'none';
+                if (e.target === registerPopup) registerPopup.style.display = 'none';
+            });
+
+            if (processButton) {
+                processButton.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    mensagem();
+                });
+            }
+
+            if (addAudioButton) {
+                addAudioButton.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    mensagem();
+                });
+            }
+
+            if (videoInput) {
+                videoInput.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    mensagem();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
