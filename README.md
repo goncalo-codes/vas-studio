@@ -35,7 +35,7 @@ It also provides a **simple video editor** that enables users to add soundscapes
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/vas.git
+git clone https://github.com/lucas-morim/vas.git
 
 2. Install dependencies
 
