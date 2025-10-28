@@ -50,33 +50,29 @@ Users can create custom audio atmospheres for their media projects in a few clic
 
 ## 🚀 Getting Started
 
-### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/vas.git
-```
-### 2. Install dependencies
-```bash
+
+# Clone the repository
+git clone https://github.com/goncalo-codes/vas.git
+
+# Install dependencies
 npm install
-```
-### 3. Configure the database
 
-Create a MySQL database and add your credentials in a .env file:
+# Configure the database
+Create a MySQL database and add your credentials in a .env --> (need to create the .env file):
 
-```bash
 DB_HOST=localhost
 DB_USER=root
 DB_PASS=your_password
 DB_NAME=vas
-```
 
-### 4. Start the server
-```bash
+
+# Start the server
 npm start
-```
 
-### 5. Access the app
-
+# Access the app
 Open your browser and go to http://localhost:3000
+```
 
 ---
 
