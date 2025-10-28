@@ -57,6 +57,7 @@ npm start
 5. Access the app
 
 Open your browser and go to http://localhost:3000
+```
 
 🧠 Project Goal
 
@@ -79,8 +80,3 @@ Its goal is to simplify the process of adding ambient soundscapes to media witho
 
 VAS is currently in its first functional version — stable and fully working, with continuous improvements planned.
 It aims to grow into a versatile platform for audio creation, education, and integration with visual media.
-
-🛠️ Developed by
-
-Lucas
-A passionate developer exploring the intersection of sound, interactivity, and technology.
